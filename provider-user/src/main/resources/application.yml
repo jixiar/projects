@@ -1,0 +1,17 @@
+server:
+  # 指定Tomcat端口
+  port: 8000
+spring:
+  application:
+    # 给这个服务取名叫做：microservice-provider-user
+    name: provider-user
+  jpa:
+    # 让hibernate打印执行的SQL
+    show-sql: true
+logging:
+  level:
+    root: INFO
+    # 配置日志级别，让hibernate打印出执行的SQL参数
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
