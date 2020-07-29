@@ -1,5 +1,7 @@
 package com.shiyan;
 
+import com.shiyan.dto.User;
+import com.shiyan.repository.UserRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +11,10 @@ import java.math.BigDecimal;
 import java.util.stream.Stream;
 
 @SpringBootApplication
-public class App {
+public class ProviderUserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(ProviderUserApplication.class, args);
     }
 
     /**

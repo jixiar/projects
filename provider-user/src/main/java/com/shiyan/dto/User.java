@@ -1,4 +1,4 @@
-package com.shiyan;
+package com.shiyan.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
