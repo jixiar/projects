@@ -1,1 +1,19 @@
+spring:
+  application:
+    name: eureka-server
+server:
+  port: 8761
+eureka:
+  instance:
+#    在某些情况下，Eureka最好公布服务的IP地址，而不是主机名（如 localhost）。设置eureka.instance。当应用程序注册到eureka时，它使用它的IP地址而不是主机名。
+#    如果主机名不能由程序确定，那么IP地址将被发送到Eureka。设置主机名的唯一方法是设置eureka.instance.hostname。您可以在运行时通过使用环境变量设置您的主机名—例如，eureka.instance.hostname=${HOST_NAME}。 设置主机名防止服务器切换IP
+    hostname: 127.0.0.1
+  client:
+#    eureka server禁用服务注册和拉取注册表的功能
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
 
+#      您可以向一个系统添加多个对等点，只要它们通过至少一条边相互连接，它们就可以在彼此之间同步注册。如果对等点在物理上是分开的(在一个数据中心内或在多个数据中心之间)，那么系统原则上可以在“裂脑”类型的故障中存活下来。您可以向一个系统添加多个对等点，只要它们都是直接相互连接的，它们之间就会同步注册。
+#      defaultZone: https://peer1/eureka/,http://peer2/eureka/,http://peer3/eureka/

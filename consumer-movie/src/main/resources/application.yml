@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: consumer-movie
+#    延迟加载所有bean，只有在使用该bean时才会被加载
+  main:
+    lazy-initialization: true
 logging:
   level:
     root: INFO
@@ -10,3 +13,26 @@ logging:
     org.hibernate: INFO
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    enabled: false
+#     若要禁用Eureka发现客户端，可以设置Eureka.Client.enabled为false。或则当spring.cloud.discovery.enabled为false时，Eureka发现客户端也将被禁用
+
+#    默认情况下，EurekaClient bean是可刷新的，这意味着Eureka客户端属性可以更改和刷新。当刷新发生时，将取消从Eureka服务器注册的客户端，可能会有一段短暂的时间，即给定服务的所有实例都不可用。消除这种情况的一种方法是禁用刷新Eureka客户机的功能。为此设置eureka.client.refresh.enable=false。
+    refresh:
+      enable: false
+
+#  如果重写了info和health端口需要重新设置 默认使用Spring Boot Actuator的断点
+#  instance:
+#    statusPageUrlPath: ${server.servletPath}/info
+#    healthCheckUrlPath: ${server.servletPath}/health
+
+
+#    一个普通的Netflix Eureka实例使用一个ID注册，这个ID等于它的主机名(也就是说，每个主机只有一个服务)。Spring Cloud Eureka提供了一个合理的默认值，其定义如下:
+#    ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+#      An example is myhost:myappname:8080.
+#  instance:
+#    instance-id:  ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+
